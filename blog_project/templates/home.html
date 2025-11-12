@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Головна - Блог{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">
+        <i class="fas fa-blog text-primary"></i>
+        Ласкаво просимо до нашого блогу!
+    </h1>
+    
+    {% if user.is_authenticated %}
+        <p class="lead">Привіт, {{ user.username }}! 👋</p>
+        <p class="text-muted">Ваша роль: 
+            {% if user.profile.role == 'admin' %}
+                <span class="badge bg-danger">Адміністратор</span>
+            {% elif user.profile.role == 'author' %}
+                <span class="badge bg-primary">Автор</span>
+            {% else %}
+                <span class="badge bg-secondary">Користувач</span>
+            {% endif %}
+        </p>
+        
+        <div class="mt-4">
+            <a href="{% url 'users:profile' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-user"></i> Мій профіль
+            </a>
+        </div>
+    {% else %}
+        <p class="lead">Приєднуйтесь до нашої спільноти!</p>
+        <div class="mt-4">
+            <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg me-2">
+                <i class="fas fa-user-plus"></i> Зареєструватися
+            </a>
+            <a href="{% url 'users:login' %}" class="btn btn-outline-secondary btn-lg">
+                <i class="fas fa-sign-in-alt"></i> Увійти
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-newspaper fa-3x text-primary mb-3"></i>
+                <h5 class="card-title">Статті</h5>
+                <p class="card-text">Читайте цікаві статті від наших авторів</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-comments fa-3x text-success mb-3"></i>
+                <h5 class="card-title">Коментарі</h5>
+                <p class="card-text">Обговорюйте та діліться думками</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-star fa-3x text-warning mb-3"></i>
+                <h5 class="card-title">Оцінки</h5>
+                <p class="card-text">Оцінюйте улюблені статті</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
