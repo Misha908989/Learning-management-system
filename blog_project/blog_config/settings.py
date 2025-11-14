@@ -142,3 +142,6 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Налаштування email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Кастомізація адмін-панелі
+STATICFILES_DIRS = [BASE_DIR / 'static']
